@@ -257,14 +257,4 @@ def executeProgram():
     messageDraft = sendMessageToUser(timePlayed,cashEarned,cashSpent,cashStolen,itemsStolen,customersServed,robbersArrested,distanceDriven,salesOfProducts,totalItemsSold)
     sendEmail(sender,sender_password,recipient, messageDraft)
     print("Complete :)")
-    if len(newProductRequest) > 0:
-        productNeedsValidating = True
-        file = open("ProductsToValidate.txt","w")
-        file.write(str(newProductRequest))
-        file.close()
-    else:
-        productNeedsValidating = False
-
-    return productNeedsValidating, newProdcutRequest
-
 #executeProgram()

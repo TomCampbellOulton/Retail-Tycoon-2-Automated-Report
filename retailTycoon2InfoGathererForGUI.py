@@ -16,6 +16,11 @@ recipient = "YourEmail@gmail.com"
 
 
 
+
+
+
+
+
 #   Import Packages
 
 # Provides break in between instructions to allow
@@ -94,8 +99,9 @@ def screenGrabNRead(x1,y1,x2,y2):
     return text
 
 
-def mainProgram():
-    # Scroll Down 30 then Back Up
+def mainProgram(numberOfScrolls):
+    # Scroll Down numberOfScrolls then Back Up
+    sleepTime = 0
     direction = 'up'
     for j in range(1):
         if direction == 'up':
@@ -123,13 +129,13 @@ def mainProgram():
             robbersArrested = stats[6]
             distanceDriven = stats[7]
             direction = 'down'
-            time.sleep(3)
+            time.sleep(sleepTime)
         else:
             direction = 'up'
 
         # Range is the number of scrolls required to reach top
         # or bottom of list
-        for i in range(31):
+        for i in range(numberOfScrolls):
 
             text = screenGrabNRead(690, 630, 1030, 824)
             print(text)
@@ -171,7 +177,7 @@ def mainProgram():
             else:
                 mouse.scroll(0, -2)
 
-            time.sleep(1)
+            time.sleep(sleepTime)
     return salesOfProducts,timePlayed,cashEarned,cashSpent,cashStolen,itemsStolen,customersServed,robbersArrested,distanceDriven
 
 def writeFile(salesOfProducts):
@@ -237,9 +243,6 @@ def sendEmail(sender,sender_password,recipient, messageDraft):
 
     print("Sent Email")
 
-def getUsersInput():
-    message = (("Is %s a new item?")%(item))
-
 def validateNewProduct(item):
     # If the product is valid it will be added
     # to the list of valid products
@@ -251,10 +254,13 @@ def validateNewProduct(item):
 
 
 def executeProgram():
-    salesOfProducts,timePlayed,cashEarned,cashSpent,cashStolen,itemsStolen,customersServed,robbersArrested,distanceDriven = mainProgram()
+    print("Executing...")
+    salesOfProducts,timePlayed,cashEarned,cashSpent,cashStolen,itemsStolen,customersServed,robbersArrested,distanceDriven = mainProgram(numberOfScrolls=50)
     writeFile(salesOfProducts)
     totalItemsSold = calculateTotalItemsSold(salesOfProducts)
     messageDraft = sendMessageToUser(timePlayed,cashEarned,cashSpent,cashStolen,itemsStolen,customersServed,robbersArrested,distanceDriven,salesOfProducts,totalItemsSold)
     sendEmail(sender,sender_password,recipient, messageDraft)
     print("Complete :)")
-#executeProgram()
+
+
+executeProgram()

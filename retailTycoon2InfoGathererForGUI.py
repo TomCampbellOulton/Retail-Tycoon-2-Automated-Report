@@ -33,7 +33,7 @@ import pyscreenshot as ImageGrab
 # Reads text from screenshot
 import pytesseract
 # Set up pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\\Users\\tcamp\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"C:\\Users\\your_username_here\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe"
 
 # Scrolling
 # Import mouse controller for scrolling
@@ -264,3 +264,4 @@ def executeProgram():
 
 
 executeProgram()
+
